@@ -7,10 +7,10 @@ module XporterOnDemand
     attr_accessor :endpoint, :options, :parameters, :pagination, :uri, :id
 
     def self.create(endpoint, args = {})
-      endpoint_name  = endpoint.to_s.classify
+      endpoint_name = endpoint.to_s.classify
 
       unless const_defined?(endpoint_name, false)
-        class_name  = Class.new(self)
+        class_name = Class.new(self)
         endpoint_class = const_set(endpoint_name, class_name)
       end
 

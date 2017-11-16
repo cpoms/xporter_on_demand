@@ -17,7 +17,7 @@ module XporterOnDemand
         par_resp:               { type: :boolean },
         pupil_premium:          { type: :boolean },
         service_child:          { type: :boolean },
-        uniform_allowance:      { type: :boolean },
+        uniform_allowance:      { type: :boolean }
       )
 
       FORMATTERS = {
@@ -25,7 +25,7 @@ module XporterOnDemand
         csv:       ->(v){ v.split(',') rescue [] },
         date:      ->(v){ Date.parse(v) rescue nil },
         date_time: ->(v){ DateTime.parse(v) rescue nil },
-        default:   ->(v){ v }
+        default:   ->(v){ v },
       }
 
       def self.serialise(attributes)

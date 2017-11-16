@@ -5,7 +5,7 @@ module XporterOnDemand
       @options[:url] ||= STS_PATH
 
       @request_body = {}
-      %w{ estab relyingParty password thirdpartyid }.each_with_index{ |k, i| @request_body[k] = args[i] }
+      %w(estab relyingParty password thirdpartyid).each_with_index{ |k, i| @request_body[k] = args[i] }
 
       @request_body["thirdpartyid"] ||= "XporterOnDemand"
       raise ArgumentError, "must supply all the sniz" unless @request_body.none?{ |k, v| v.nil? }

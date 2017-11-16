@@ -18,5 +18,5 @@ require 'xporter_on_demand/result/serialiser'
 module XporterOnDemand
   API_PATH  = "https://xporter.groupcall.com/api/v1/"
   STS_PATH  = "https://login.groupcall.com/idaas/sts/STS/GetToken"
-  META_KEYS = %w{ ChangedRows DbStatus Meta Pagination }
+  META_KEYS = %w(ChangedRows DbStatus Meta Pagination)
 end

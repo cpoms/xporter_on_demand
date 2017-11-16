@@ -22,16 +22,15 @@ module XporterOnDemand
       args[:edubase] ? edubase_client : school_client
     end
 
-    %i{ token_details scopes queries logs usage }.each do |endpoint|
+    %i(token_details scopes queries logs usage).each do |endpoint|
       define_method(endpoint){ get_info(endpoint.to_s.camelcase) }
     end
 
-    # Dis is poo
     def school_client
       @uri = API_PATH + "School/" + estab + "/"
     end
 
-    # So is dis
+    # This is not finished and probably won't even work.
     def edubase_client
       @uri = API_PATH + "RunQuery/?"
     end

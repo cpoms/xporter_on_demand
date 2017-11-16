@@ -50,7 +50,7 @@ module XporterOnDemand
         XporterOnDemand::Result::Base,
         {
           namespace: XporterOnDemand::Result,
-          result: object
+          result: object,
         }
       )
     end

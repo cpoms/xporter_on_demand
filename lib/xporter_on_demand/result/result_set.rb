@@ -37,18 +37,16 @@ module XporterOnDemand
         results_hash.each do |type, results|
           if META_KEYS.include? type.camelcase
             assign_attributes(type => results)
-          else
-            if self.respond_to?(type)
-              results.each do |result|
-                if result.respond_to?(:id) && existing_result = send(type).find{ |r| r.id == result.id }
-                  existing_result.update(result)
-                else
-                  send(type).append(result)
-                end
+          elsif self.respond_to?(type)
+            results.each do |result|
+              if result.respond_to?(:id) && existing_result = send(type).find{ |r| r.id == result.id }
+                existing_result.update(result)
+              else
+                send(type).append(result)
               end
-            else
-              assign_attributes(type => results)
             end
+          else
+            assign_attributes(type => results)
           end
         end
       end
