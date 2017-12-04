@@ -20,10 +20,10 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "httpi"
+  spec.add_runtime_dependency 'httpi', '~> 2.4.2', '>= 2.4.2'
   # Gotta use httpclient cos net_http don't like the __foo__ JSON keys
-  spec.add_dependency "httpclient"
-  spec.add_dependency "activesupport"
+  spec.add_runtime_dependency 'httpclient', '~> 2.8.3', '>= 2.8.3'
+  spec.add_runtime_dependency 'activesupport', '~> 5.0.0.1', '>= 5.0.0.1'
   spec.add_development_dependency "bundler", "~> 1.15"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "minitest", "~> 5.0"
