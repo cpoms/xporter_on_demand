@@ -21,7 +21,7 @@ module XporterOnDemand
       )
 
       FORMATTERS = {
-        boolean:   ->(v){ !!v.nonzero? },
+        boolean:   ->(v){ !!v.nonzero? rescue nil },
         csv:       ->(v){ v.split(',') rescue [] },
         date:      ->(v){ Date.parse(v) rescue nil },
         date_time: ->(v){ DateTime.parse(v) rescue nil },
