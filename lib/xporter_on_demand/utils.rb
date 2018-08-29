@@ -33,11 +33,15 @@ module XporterOnDemand
 
       XporterOnDemand::Result::Serialiser.serialise(attributes).each do |name, value|
         method_name = name.camelize.underscore
-        unless META_KEYS.include?(name.camelize)
+
+        if META_KEYS.include?(name.camelize)
+          value = unwrap(value)
+        else
           method_name = method_name.singularize if value.is_a?(Array) && value.length == 1
         end
 
-        instance_variable_set("@#{method_name}", unwrap(value))
+        instance_variable_set("@#{method_name}", value)
+
         self.class.send(:attr_reader, method_name)
 
         @attributes |= [method_name]

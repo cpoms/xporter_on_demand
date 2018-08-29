@@ -38,7 +38,7 @@ module XporterOnDemand
           if META_KEYS.include? type.camelcase
             assign_attributes(type => results)
           elsif self.respond_to?(type)
-            send(type).sort_by!(&:id) if send(type).respond_to?(:id)
+            send(type).sort_by!(&:id) if send(type).first.respond_to?(:id)
             results.each do |result|
               if result.respond_to?(:id) && existing_result = send(type).bsearch{ |r| r.id == result.id }
                 existing_result.update(result)
