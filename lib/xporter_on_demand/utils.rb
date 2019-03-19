@@ -18,7 +18,7 @@ module XporterOnDemand
 
     def handle_exceptions(response)
       response_body = JSON.parse(response.body || {})
-      raise response_body["ExceptionMessage"] if response_body["ExceptionMessage"]
+      raise response_body["ExceptionMessage"] if response_body["ExceptionMessage"] && !@dont_raise_exception
     end
 
     def parameterize(sym)
@@ -67,6 +67,13 @@ module XporterOnDemand
       else
         enum
       end
+    end
+
+    def dont_raise_exception
+      @dont_raise_exception = true
+      yield
+    ensure
+      @dont_raise_exception = false
     end
   end
 end

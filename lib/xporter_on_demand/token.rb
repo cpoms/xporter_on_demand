@@ -1,6 +1,7 @@
 module XporterOnDemand
   class Token < Client
     def initialize(*args)
+      @loaded = false
       @options = args.last.is_a?(Hash) ? args.pop : {}
       @options[:url] ||= STS_PATH
 
@@ -14,7 +15,20 @@ module XporterOnDemand
     def retrieve
       result = post(@options.merge(body: @request_body.to_json))
       assign_attributes(result)
+      @loaded =  true
       self
+    end
+
+    def validate
+      dont_raise_exception{ retrieve }
+
+      if token
+        :valid
+      elsif try(:authorisation_paused)
+        :paused
+      else
+        :invalid
+      end
     end
   end
 end
