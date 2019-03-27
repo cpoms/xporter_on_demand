@@ -14,9 +14,11 @@ require 'xporter_on_demand/version'
 require 'xporter_on_demand/result/base'
 require 'xporter_on_demand/result/result_set'
 require 'xporter_on_demand/result/serialiser'
+require 'xporter_on_demand/registration'
 
 module XporterOnDemand
-  API_PATH  = "https://xporter.groupcall.com/api/v1/"
-  STS_PATH  = "https://login.groupcall.com/idaas/sts/STS/GetToken"
-  META_KEYS = %w(ChangedRows DbStatus Meta Pagination)
+  API_PATH          = "https://xporter.groupcall.com/api/v1/"
+  STS_PATH          = "https://login.groupcall.com/idaas/sts/STS/GetToken"
+  META_KEYS         = %w(ChangedRows DbStatus Meta Pagination)
+  REGISTRATION_PATH = "https://manage.groupcall.com/API/XporterOnDemand/SchoolRegister"
 end
