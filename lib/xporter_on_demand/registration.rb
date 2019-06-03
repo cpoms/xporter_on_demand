@@ -27,7 +27,7 @@ module XporterOnDemand
       we_accept_groupcall_usage_policy
     )
 
-    School = Struct.new(*SCHOOL_ATTRIBUTES) do
+    School = Struct.new(*SCHOOL_ATTRIBUTES, keyword_init: true) do
       attr_accessor :status, :message
 
       def camelize
@@ -52,11 +52,7 @@ module XporterOnDemand
         hash[key] = param_hash[key]
       end
 
-      if School.const_defined? 'ActiveModel::Model'
-        @schools << School.new.tap{ |s| s.assign_attributes attributes }
-      else
-        @schools << School.new(*attributes.values)
-      end
+      @schools << School.new(attributes)
     end
 
     def register
