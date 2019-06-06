@@ -27,11 +27,18 @@ module XporterOnDemand
       we_accept_groupcall_usage_policy
     )
 
-    School = Struct.new(*SCHOOL_ATTRIBUTES, keyword_init: true) do
-      attr_accessor :status, :message
+    class School
+      include ActiveModel::Model
+      attr_accessor :status, :message, *SCHOOL_ATTRIBUTES
 
       def camelize
         to_h.transform_keys{ |k| k.to_s.camelcase }.reject{ |_k, v| v.nil? || (String === v && v.empty?) }
+      end
+
+      def to_h
+        SCHOOL_ATTRIBUTES.each_with_object({}) do |key, hash|
+          hash[key] = send(key)
+        end
       end
     end
 
@@ -56,7 +63,7 @@ module XporterOnDemand
     end
 
     def register
-      timestamp = DateTime.current.strftime("%FT%T")
+      timestamp = DateTime.current.strftime("%FT%T%z")
       auth = generate_hash(timestamp: timestamp)
 
       args = {

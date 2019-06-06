@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
   # Gotta use httpclient cos net_http don't like the __foo__ JSON keys
   spec.add_runtime_dependency 'httpclient', '~> 2.8.3', '>= 2.8.3'
   spec.add_runtime_dependency 'activesupport', '>= 4'
+  spec.add_runtime_dependency 'activemodel', '>= 4'
   spec.add_development_dependency "bundler", "~> 1.15"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "minitest", "~> 5.0"
