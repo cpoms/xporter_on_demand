@@ -1,4 +1,5 @@
 require 'xporter_on_demand/utils'
+require 'active_model'
 require 'base64'
 
 module XporterOnDemand
