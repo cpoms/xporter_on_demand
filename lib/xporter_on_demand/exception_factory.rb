@@ -1,7 +1,7 @@
 module XporterOnDemand
   module ExceptionFactory
     def self.generate_exception(response_hash)
-      exception_type    = response_hash.delete('ExceptionType')
+      exception_type    = response_hash.delete('ExceptionType') || "UnknownError"
       message           = response_hash.delete('Message')
       exception_message = response_hash.delete('ExceptionMessage')
       inner_exception   = response_hash.delete('InnerException')
