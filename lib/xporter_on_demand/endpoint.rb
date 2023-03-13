@@ -34,7 +34,7 @@ module XporterOnDemand
     end
 
     def build_query
-      URI.escape(resource + "?" + build_parameters)
+      URI::Parser.new.escape(resource + "?" + build_parameters)
     end
 
     private
